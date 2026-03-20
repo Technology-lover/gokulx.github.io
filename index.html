@@ -1,134 +1,268 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>GokulX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS7 , Cyber & IoT Enthusiast</title>
 
-  <!-- Modern font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0b0b0c;
-      color: #eaeaea;
-    }
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --surface-color: #161b22;
+            --accent-color: #3fb950;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            --font-ui: 'Inter', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 20px;
-      text-align: center;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    h1 {
-      font-size: 56px;
-      margin: 0;
-      letter-spacing: -1px;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-ui);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .tagline {
-      font-size: 18px;
-      margin-top: 12px;
-      color: #9ca3af;
-    }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
 
-    .btn {
-      display: inline-block;
-      margin: 20px 10px;
-      padding: 12px 22px;
-      border-radius: 8px;
-      background: #1f2937;
-      color: #eaeaea;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
+        .container { max-width: 1024px; margin: 0 auto; padding: 0 2rem; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; border-left: 4px solid var(--accent-color); padding-left: 1rem; }
 
-    .btn:hover {
-      background: #374151;
-    }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    .section {
-      margin-top: 80px;
-      text-align: left;
-    }
+        header {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 4rem;
+            gap: 4rem;
+        }
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
+        .terminal-window {
+            background-color: #1c2128;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            font-family: var(--font-code);
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid var(--border-color);
+        }
 
-    .card {
-      background: #111827;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      transition: 0.2s;
-    }
+        .terminal-header {
+            background: #21262d;
+            padding: 8px 1rem;
+            display: flex;
+            gap: 6px;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .card:hover {
-      transform: translateY(-3px);
-      background: #1f2937;
-    }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #484f58; }
 
-    .card h3 {
-      margin: 0;
-      font-size: 18px;
-    }
+        .terminal-body { padding: 1.5rem; color: var(--accent-color); font-family: var(--font-code); font-size: 0.9rem; white-space: pre-wrap; }
 
-    .card p {
-      margin-top: 8px;
-      color: #9ca3af;
-      font-size: 14px;
-    }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 6rem; }
 
-    .skills {
-      color: #9ca3af;
-      line-height: 1.8;
-    }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; gap: 2rem; } }
 
-    .contact {
-      color: #9ca3af;
-    }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 6rem; }
 
-  </style>
+        .skill-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
+        .skill-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+        .project-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .project-card:hover { transform: scale(1.02); }
+
+        .tags span { font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; margin-right: 4px; }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn:hover { border-color: var(--accent-color); }
+
+        footer { padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); margin-top: 4rem; }
+    </style>
 </head>
-
 <body>
 
-  <div class="container">
-    <h1>GokulX</h1>
-    <p class="tagline">Cybersecurity · Embedded Systems · Builder</p>
+<div class="container">
 
-    <a class="btn" href="#projects">Projects</a>
-    <a class="btn" href="https://github.com/Technology-lover">GitHub</a>
-  </div>
+    <header id="home">
+        <div class="terminal-window fade-in visible">
+            <div class="terminal-header">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <div class="terminal-body" id="typing-text"></div>
+        </div>
 
-  <div class="container section" id="projects">
-    <h2>Projects</h2>
+        <div style="margin-top: 2rem; max-width: 600px;" class="fade-in visible">
+            <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem;">
+                Securing the <br>
+                <span style="color: var(--accent-color); font-family: var(--font-code);">Digital Frontier</span>.
+            </h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem;">
+                Cybersecurity Enthusiast.<br>
+                Obsessed with Linux, IoT, and building resilient systems.
+            </p>
 
-    <div class="card">
-      <h3>ESP32 Radar</h3>
-      <p>WiFi signal-based motion detection using ESP32.</p>
-    </div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="#" class="btn" target="_blank">GitHub</a>
+                <a href="#" class="btn" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </header>
 
-    <div class="card">
-      <h3>NFC Toolkit</h3>
-      <p>PN532-based NFC/RFID toolkit.</p>
-    </div>
+    <section id="skills" style="margin-top: 4rem;">
+        <h2 class="section-title fade-in visible">Technical Arsenal</h2>
 
-  </div>
+        <div class="grid-2">
+            <div class="fade-in visible">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Offensive Security</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Red teaming, penetration testing, and vulnerability assessment to find weaknesses before they are exploited.</p>
+            </div>
 
-  <div class="container section">
-    <h2>Skills</h2>
-    <p class="skills">Embedded Systems · Cybersecurity · Linux · Networking</p>
-  </div>
+            <div class="fade-in visible">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Defensive Operations</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Incident response, threat hunting, and building zero-trust architectures.</p>
+            </div>
 
-  <div class="container section">
-    <h2>Contact</h2>
-    <p class="contact">gokul@gokulx.com</p>
-  </div>
+            <div class="skills-grid fade-in visible" id="skills-container"></div>
+        </div>
+    </section>
+
+    <section id="projects" style="margin-top: 4rem;">
+        <h2 class="section-title fade-in visible">Featured Projects</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;" id="projects-container"></div>
+    </section>
+
+    <footer>
+        &copy; 2026 . Not Built with secure code principles.
+    </footer>
+</div>
+
+<script>
+    const skills = [
+        { name: "C/C++", icon: "⚡" },
+        { name: "Python", icon: "🐍" },
+        { name: "Arch Linux", icon: "🐧" },
+        { name: "IoT", icon: "📡" },
+        { name: "Wireshark", icon: "🕸️" },
+        { name: "Metasploit", icon: "💊" },
+        //{ name: "Arch Linux", icon: "🦅" },
+        { name: "Docker", icon: "🐳" }
+    ];
+
+    const projects = [
+        {
+            title: "Home IoT Lab Monitor",
+            desc: "A Raspberry Pi based dashboard monitoring sensor data from the home lab with encrypted local storage.",
+            tags: ["Python", "MQTT", "Raspberry Pi"]
+        },
+        {
+            title: "Packet Sniffer CLI Tool",
+            desc: "A lightweight C++ utility for analyzing network traffic and identifying suspicious protocols in real-time.",
+            tags: ["C/C++", "Wireshark API", "Networking"]
+        },
+        {
+            title: "Secure Shell Scripting",
+            desc: "Automated backup and rotation scripts hardened against common shell injection vulnerabilities.",
+            tags: ["Bash", "Security", "Automation"]
+        }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const skillsContainer = document.getElementById('skills-container');
+        skills.forEach(skill => {
+            const div = document.createElement('div');
+            div.className = 'skill-card fade-in visible';
+            div.innerHTML = `<span class="skill-icon">${skill.icon}</span><strong>${skill.name}</strong>`;
+            skillsContainer.appendChild(div);
+        });
+
+        const projectsContainer = document.getElementById('projects-container');
+        projects.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card fade-in visible';
+            let tagsHtml = proj.tags.map(t => `<span>${t}</span>`).join('');
+            card.innerHTML = `<div><h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">${proj.title}</h3><p style="color: var(--text-muted); font-size: 0.95rem;">${proj.desc}</p><div class="tags" style="margin-top: 1rem;">${tagsHtml}</div></div><a href="#" class="btn">View Source</a>`;
+            projectsContainer.appendChild(card);
+        });
+
+        const lines = [
+            "root@gokulx:~$ whoami\n",
+            "> Chief Information Security Officer\n",
+            "> Cybersecurity Enthusiast\n",
+            "> Passionate about Linux & IoT\n"
+        ];
+
+        const terminalBody = document.getElementById('typing-text');
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    terminalBody.innerHTML += lines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 30);
+                } else {
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+        }
+
+        setTimeout(typeWriter, 500);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    });
+</script>
 
 </body>
 </html>
